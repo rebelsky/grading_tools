@@ -29,7 +29,7 @@ class GradingTools::AveragePolicy
         droptext = ", dropping the lowest #{@drop}"
       end
       if (@scale != 100)
-        "average of #{average(grades)} on a #{@scale}-point scale#{droptext}"
+        "average of #{average(grades).round(1)} on a #{@scale}-point scale#{droptext}"
       else
         "average#{droptext}"
       end

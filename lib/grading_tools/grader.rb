@@ -83,7 +83,7 @@ SUMMARY REPORT
       est = 100*(total/possible)
       ec = @ec.grade || 0
       extra = ec * @extra
-      absences = @absences.grade
+      absences = @absences.grade || 0
 
       puts <<-NUMBERS
 
