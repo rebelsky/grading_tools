@@ -31,13 +31,14 @@ class GradingTools::Grader
   def processFile(fname)
     File.open(fname, "r") do |fh|
       fh.each_line do |line|
-        processLine(line)
+        processLine(line.chomp)
       end
     end
   end
 
   def processLine(line)
-    (id,type,grade,notes) = line.chomp.split('	', 4)
+    line = line.gsub(/  +/, "\t")      # Replace 2 or more spaces by a tab
+    (id,type,grade,notes) = line.split("\t", 4)
     notes = "" if (not notes)
     # STDERR.puts "id: '#{id}', type: '#{type}', grade: '#{grade}', notes: '#{notes}'"
     if id === userid
