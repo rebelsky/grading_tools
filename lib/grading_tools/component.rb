@@ -89,6 +89,6 @@ class GradingTools::Component
   }
 
   def convertGrade(grade)
-    return @@conversions[grade] || grade.to_i
+    return @@conversions[grade] || grade.to_f
   end
 end
