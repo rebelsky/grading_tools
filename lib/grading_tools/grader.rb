@@ -58,7 +58,7 @@ class GradingTools::Grader
 Estimated grade report for #{name} [#{userid}]
 
 This is an experimental grade report and is not guaranteed to be
-accurate.  Esimated grades are based on current status in the
+accurate.  Estimated grades are based on current status in the
 course.  Final grades may therefore be much different.
 
 SUMMARY REPORT
