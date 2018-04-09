@@ -11,4 +11,4 @@ fields are username, item, grade, and notes.  For example
 
     rebelsky	hw4	check	with skyrebel
 
-
+See `examples/report` for an example of how to use the code.
