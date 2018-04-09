@@ -1,0 +1,66 @@
+#!/usr/bin/env ruby
+
+# A quick hack to grade students from CSC 151.
+
+require 'grading_tools'
+
+# Prepare the grader
+@grader = GradingTools::Grader.new({ :name => ARGV[0],
+                       :userid => ARGV[1] })
+
+# Set up some of the standard components
+@participation = @grader.newCategory({ :type => "Participation",
+                                       :percent => 5,
+                                       :patterns => [/^part/i],
+                                       :policy => 
+                                         GradingTools::SumPolicy.new()})
+
+@flashcards = @grader.newCategory({ :type => "Flash cards",
+                                    :percent => 5,
+                                    :patterns => [/^flash/i],
+                                    :policy =>
+                                      GradingTools::CountPolicy.new({ :required => 8 })})
+
+@labs = @grader.newCategory({ :type => "Lab writeups",
+                              :percent => 10,
+                              :patterns => [/^lab/i],
+                              :policy =>
+                                GradingTools::PercentPolicy.new({ :missing => 2 })})
+ 
+@hw = @grader.newCategory({ :type => "Homework",
+                            :patterns => [/^hw/i, /^Homework/i],
+                            :percent => 15,
+                            :policy => 
+                              GradingTools::FourPointAveragePolicy.new() })
+
+@project = @grader.newCategory({ :type => "Project",
+                                 :patterns => [/^proj/i],
+                                 :percent => 10,
+                                 :policy =>
+                                   GradingTools::SumPolicy.new() })
+
+@quizzes = @grader.newCategory({ :type => "Quizzes",
+                                 :patterns => [/^quiz/i],
+                                 :percent => 10,
+                                 :policy => 
+                                   GradingTools::AveragePolicy.new({ :drop => 1, :scale => 10 }) })
+
+@exams = @grader.newCategory({ :type => "Exams",
+                               :patterns => [/^exam/i, /^Final/i],
+                               :percent => 40 })
+
+@final = @grader.newCategory({ :type => "Final",
+                               :patterns => [/^Final/i],
+                               :percent => 0 })
+
+@best = @grader.newCategory({ :type => "Best individual",
+                              :patterns => [],
+                              :percent => 5,
+                              :policy => 
+                                GradingTools::BestOfPolicy.new([@exams,@quizzes,@final]) })
+
+# Read the data
+@grader.processFile("grades")
+
+# And print the report
+@grader.report
