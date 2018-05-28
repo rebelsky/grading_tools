@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
 		   "lib/grading_tools/four_point_average_policy.rb",
 		   "lib/grading_tools/journal_policy.rb",
 		   "lib/grading_tools/percent_policy.rb",
+		   "lib/grading_tools/singleton_policy.rb",
 		   "lib/grading_tools/sum_policy.rb",
 		   "lib/grading_tools/component.rb",
 		   "lib/grading_tools/grader.rb" ]
