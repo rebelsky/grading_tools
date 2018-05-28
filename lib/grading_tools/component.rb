@@ -65,7 +65,7 @@ class GradingTools::Component
   def detailed
     if (@data.length > 0)
       mygrade = grade || ""
-      puts "#{@type}: #{mygrade}"
+      puts "#{@type}: #{mygrade.round(1)}"
       for datum in @data
         puts "\t#{datum}"
       end 
