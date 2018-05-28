@@ -44,7 +44,7 @@ class GradingTools::Component
     end
     mygrade = grade
     if mygrade
-      mygrade = "#{mygrade.round(1)}"
+      mygrade = "#{mygrade.to_f.round(1)}"
     else
       mygrade = "[No grades available]"
     end
@@ -65,7 +65,7 @@ class GradingTools::Component
   def detailed
     if (@data.length > 0)
       mygrade = grade || ""
-      puts "#{@type}: #{mygrade.round(1)}"
+      puts "#{@type}: #{mygrade.to_f.round(1)}"
       for datum in @data
         puts "\t#{datum}"
       end 
