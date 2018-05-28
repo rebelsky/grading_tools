@@ -13,5 +13,4 @@ During development, the useful lines include
 To do
 -----
 
-* Add the "Final replaces lowest exam" policy.
 * Add tests.  Lots of tests.
