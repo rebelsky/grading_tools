@@ -18,7 +18,8 @@ class GradingTools::JournalPolicy < GradingTools::Policy
       "checkplus" => 100, "check+" => 100, "vg" => 100, "very good" => 100,
       "check" => 90, "good" => 90,
       "check-" => 80, "checkminus" => 80, "fair" => 80,
-      "minus" => 70, "poor" => 70
+      "minus" => 70, "poor" => 70,
+      "late" => 75
     }
 
     @journal_conversions[grade] || super(grade)
