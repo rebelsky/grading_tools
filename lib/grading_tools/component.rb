@@ -21,7 +21,7 @@ class GradingTools::Component
         info = "#{name}\t#{grade}\t#{notes}"
         @data << info
         if (grade != "X")
-          @grades << @policy.convertGrade(grade)
+          @grades << convertGrade(grade)
         end
         return true
       end
@@ -73,4 +73,8 @@ class GradingTools::Component
     end
   end
 
+  # Convert a grade (included for historical reasons)
+  def convertGrade(grade)
+    @policy.convertGrade(grade)
+  end
 end
