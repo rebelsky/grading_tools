@@ -1,13 +1,29 @@
 require 'grading_tools/policy'
 
-# Compute the average of grades
-class GradingTools::AveragePolicy < GradingTools::Policy
+# Journals are plus/check/minus, can drop some, check is 90
+class GradingTools::JournalPolicy < GradingTools::Policy
+
   def initialize(params={})
-    @scale = params[:scale] || 100
     # The number of grades we require before dropping
     @require = params[:require] || 0
     # The number of things we drop
     @drop = params[:drop] || 0
+  end
+
+  # Convert a grade to numeric form
+  def convertGrade(grade)
+    puts "Converting #{grade}"
+
+    @journal_conversions ||= { 
+      "plus" => 110, "excellent" => 110, "ex" => 110,
+      "check++" => 105,
+      "checkplus" => 100, "check+" => 100, "vg" => 100, "very good" => 100,
+      "check" => 90, "good" => 90,
+      "check-" => 80, "checkminus" => 80, "fair" => 80,
+      "minus" => 70, "poor" => 70
+    }
+
+    @journal_conversions[grade] || super(grade)
   end
 
   def average(grades)
@@ -24,7 +40,7 @@ class GradingTools::AveragePolicy < GradingTools::Policy
 
   def compute(grades)
     if (grades.length > 0)
-      (average(grades) * 100/@scale).round(2)
+      average(grades).round(2)
     end
   end
 
@@ -34,11 +50,7 @@ class GradingTools::AveragePolicy < GradingTools::Policy
       if (@drop > 0)
         droptext = ", dropping the lowest #{@drop}"
       end
-      if (@scale != 100)
-        "average of #{average(grades).round(1)} on a #{@scale}-point scale#{droptext}"
-      else
-        "average#{droptext}"
-      end
+      "average#{droptext}"
     end
   end
 end

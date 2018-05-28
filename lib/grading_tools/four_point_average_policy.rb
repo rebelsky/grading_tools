@@ -1,5 +1,7 @@
+require 'grading_tools/policy'
+
 # A policy for grading on a four-point scale, taking avearges
-class GradingTools::FourPointAveragePolicy
+class GradingTools::FourPointAveragePolicy < GradingTools::Policy
   def initialize()
   end
 

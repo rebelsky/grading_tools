@@ -1,4 +1,6 @@
-class GradingTools::PercentPolicy
+require 'grading_tools/policy'
+
+class GradingTools::PercentPolicy < GradingTools::Policy
   def initialize(params={})
     @missing = params[:missing] || 0
   end

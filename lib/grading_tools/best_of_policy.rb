@@ -1,5 +1,7 @@
+require 'grading_tools/policy'
+
 # Take the best of a bunch of other policies
-class GradingTools::BestOfPolicy
+class GradingTools::BestOfPolicy < GradingTools::Policy
   def initialize(categories)
     @categories = categories
   end

@@ -1,4 +1,7 @@
-class GradingTools::CountPolicy
+require 'grading_tools/policy'
+
+# Count the number of items, up to the required number.
+class GradingTools::CountPolicy < GradingTools::Policy
   def initialize(params={})
     @required = params[:required] || 14
   end

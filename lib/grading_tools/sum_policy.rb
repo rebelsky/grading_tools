@@ -1,4 +1,6 @@
-class GradingTools::SumPolicy
+require 'grading_tools/policy'
+
+class GradingTools::SumPolicy < GradingTools::Policy
   def initialize()
   end
 
@@ -11,3 +13,5 @@ class GradingTools::SumPolicy
   def describe(grades)
   end
 end
+
+
