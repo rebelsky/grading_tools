@@ -17,6 +17,7 @@ class GradingTools::Grader
                                 :policy => GradingTools::SumPolicy.new() })
 
     @categories = []
+    @ignore = []                                # Names we can ignore
   end
 
   def addCategory(category)
@@ -48,6 +49,11 @@ class GradingTools::Grader
           processed = true
         end
       end
+      for category in @ignore
+        if (category === type)
+          processed = true
+        end #if
+      end # for
       if (!processed)
         STDERR.puts "Unknown category '#{type}' in '#{line}'"
       end
@@ -94,7 +100,7 @@ NUMBERS
 
       if (absences > @excused) 
         penalty = (absences - @excused) * @absent
-        puts "  with #{absences} absences: #{(est + extra - penalty).round(1)}"
+        puts "  counting absences: #{(est + extra - penalty).round(1)}"
       end
     end
 
@@ -111,6 +117,10 @@ DETAILED REPORT
 	end
       end
     end
+  end
+
+  def ignore(category)
+    @ignore << category
   end
 end
 
