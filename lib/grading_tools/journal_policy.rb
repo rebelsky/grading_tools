@@ -12,8 +12,6 @@ class GradingTools::JournalPolicy < GradingTools::Policy
 
   # Convert a grade to numeric form
   def convertGrade(grade)
-    puts "Converting #{grade}"
-
     @journal_conversions ||= { 
       "plus" => 110, "excellent" => 110, "ex" => 110,
       "check++" => 105,
