@@ -60,7 +60,7 @@ class GradingTools::Grader
     end
   end
 
-  def report(details=true)
+  def report(details=true,skip_ec=false)
     puts <<-HEAD
 Estimated grade report for #{name} [#{userid}]
 
@@ -95,8 +95,12 @@ SUMMARY REPORT
       puts <<-NUMBERS
 
 Estimated numeric grade: #{total.round(1)}/#{possible.round(1)} = #{est.round(1)}
-  with #{ec} units of extra credit: #{(est + extra).round(1)}
 NUMBERS
+      if (!skip_ec) 
+        puts <<-EC
+  with #{ec} units of extra credit: #{(est + extra).round(1)}
+EC
+      end
 
       if (absences > @excused) 
         penalty = (absences - @excused) * @absent
