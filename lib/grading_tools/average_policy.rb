@@ -1,6 +1,9 @@
 class GradingTools::AveragePolicy
   def initialize(params={})
     @scale = params[:scale] || 100
+    # The number of grades we require before dropping
+    @require = params[:require] || 0
+    # The number of things we drop
     @drop = params[:drop] || 0
   end
 
@@ -8,7 +11,7 @@ class GradingTools::AveragePolicy
     len = grades.length
     if (0 == len)
       0
-    elsif ((0 == @drop) || (len <= @drop))
+    elsif ((0 == @drop) || (len <= @drop) || (len <= @require))
       grades.inject(:+)/len.to_f
     else
       sorted = grades.sort
