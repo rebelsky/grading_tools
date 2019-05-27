@@ -11,7 +11,7 @@ class GradingTools::Policy
   # Convert a grade to numeric form
   def convertGrade(grade)
     @conversions ||= { "0" => 0, "Zero" => 0, "zero" => 0,
-      "A" => 96, "A-" => 92, "A-/B+" => 90, "A/B" => 90,
+      "A+" => 100, "A" => 96, "A-" => 92, "A-/B+" => 90, "A/B" => 90,
       "B+" => 88, "B" => 86, "B-" => 82, "B-/C+" => 80, "B/C" => 80,
       "C+" => 78, "C" => 76, "C-" => 72, "C-/D+" => 70, "C/D" => 70,
       "D+" => 68, "D" => 66, "D-" => 62, 
