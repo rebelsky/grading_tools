@@ -92,10 +92,17 @@ SUMMARY REPORT
       extra = ec * @extra
       absences = @absences.grade || 0
 
+      penalty = 0;
+      if (absences > @excused) 
+        penalty = (absences - @excused) * @absent
+      end
+
       puts <<-NUMBERS
 
-Estimated numeric grade: #{total.round(1)}/#{possible.round(1)} = #{est.round(1)}
+Estimated numeric grade = #{(est + extra - penalty).round(1)}
+  Base grade: #{total.round(1)}/#{possible.round(1)} = #{est.round(1)}
 NUMBERS
+      penalty = 0
       if (!skip_ec) 
         puts <<-EC
   with #{ec} units of extra credit: #{(est + extra).round(1)}
@@ -103,7 +110,6 @@ EC
       end
 
       if (absences > @excused) 
-        penalty = (absences - @excused) * @absent
         puts "  counting absences: #{(est + extra - penalty).round(1)}"
       end
     end
